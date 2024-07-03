@@ -8,9 +8,10 @@
             "name": "pdf.js-4.4.168/web/index.html 디버그",
             "request": "launch",
             "type": "chrome",
+            // "url": "http://localhost:8192/pdf.js-4.4.168/web/viewer.html?file=http://localhost:8080/pdfs/compressed.tracemonkey-pldi-09.linearized.pdf?disablerange=true",
             "url": "http://localhost:8192/pdf.js-4.4.168/web/viewer.html?file=http://localhost:8080/pdfs/compressed.tracemonkey-pldi-09.linearized.pdf",
             // "runtimeArgs": [
-            //     "--disable-web-security"
+            //     "--disable-web-security" // CORS 문제 해결
             // ],
             "webRoot": "${workspaceFolder}"
         },

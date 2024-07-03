@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, redirect, url_for, request, Response, send_from_directory
+from flask import Flask, redirect, url_for, request, Response, send_from_directory, send_file
 from flask_cors import CORS
 import os
 import time
@@ -24,7 +24,7 @@ class SlowResponseMiddleware:
                 yield data[i:i+self.chunk_size]
 
 app = Flask(__name__)
-# CORS(app)  # CORS를 애플리케이션에 추가합니다.
+CORS(app)  # CORS를 애플리케이션에 추가합니다.
 
 # 대역폭 제한 미들웨어 적용
 # app.wsgi_app = SlowResponseMiddleware(app.wsgi_app, delay=0.5, chunk_size=1024 * 100)  # 예: 0.5초 지연, 100KB 청크
@@ -49,7 +49,8 @@ def download(filename):
 
 # @app.route('/pdfs/<filename>')
 # def pdf_viewer(filename):
-#     file_path = os.path.join('static/pdfs', filename)
+#     base_dir = os.path.abspath(os.path.dirname(__file__))  # 현재 파일의 절대 경로를 가져옵니다.
+#     file_path = os.path.join(base_dir, 'static/pdfs', filename)
 #     return send_file(file_path, conditional=True)
 
 @app.route('/pdfs/<filename>')
